@@ -11,7 +11,10 @@ namespace DataStructurePractice
         public static void CallMain()
         {
             SimpleNode node = SingleLinkedListOption2.InsertElementAtEnd();
-            SingleLinkedListOption2.InsertElementAtMid(node);
+            SingleLinkedListOption2.InsertElementBeforeValue(node);
+            //SingleLinkedListOption2.InsertElementAfterValue(node);
+            //SingleLinkedListOption2.InsertElementAtPosition(node);
+            //SingleLinkedListOption2.InsertElementAtFront(node);
 
             //SinglyLinkedList obj = new SinglyLinkedList();
             //obj.Add("test1");
@@ -153,7 +156,7 @@ namespace DataStructurePractice
             return node;
         }
 
-        public static void InsertElementAtMid(SimpleNode node)
+        public static void InsertElementAtPosition(SimpleNode node)
         {
             if (node != null)
             {
@@ -163,7 +166,7 @@ namespace DataStructurePractice
                 var index = Convert.ToInt32(Console.ReadLine());
 
                 SimpleNode p = node;
-                for (int i = 0; i < index; i++)
+                for (int i = 0; i < index - 2; i++)
                 {
                     p = p.Link;
                 }
@@ -178,6 +181,88 @@ namespace DataStructurePractice
             }
 
             DisplayElement(node);
+        }
+
+        public static void InsertElementAfterValue(SimpleNode node)
+        {
+            if (node != null)
+            {
+                Console.WriteLine("Insert Numeric Element");
+                var value = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Insert after element");
+                var afterValue = Convert.ToInt32(Console.ReadLine());
+
+                SimpleNode p = node;
+                while (p.Link != null)
+                {
+                    if (p.data == afterValue)
+                    {
+                        break;
+                    }
+                    p = p.Link;
+                }
+
+                var element = new SimpleNode(value);
+                element.Link = p.Link;
+                p.Link = element;
+            }
+            else
+            {
+                Console.WriteLine("list empty");
+            }
+
+            DisplayElement(node);
+        }
+
+        public static void InsertElementBeforeValue(SimpleNode node)
+        {
+            if (node != null)
+            {
+                Console.WriteLine("Insert Numeric Element");
+                var value = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Insert before element");
+                var afterValue = Convert.ToInt32(Console.ReadLine());
+
+                SimpleNode p = node;
+                while (p.Link != null)
+                {
+                    if (p.Link.data == afterValue)
+                    {
+                        break;
+                    }
+                    p = p.Link;
+                }
+
+                var element = new SimpleNode(value);
+                element.Link = p.Link;
+                p.Link = element;
+            }
+            else
+            {
+                Console.WriteLine("list empty");
+            }
+
+            DisplayElement(node);
+        }
+
+        public static void InsertElementAtFront(SimpleNode node)
+        {
+            SimpleNode elementNode = null;
+            if (node != null)
+            {
+                Console.WriteLine("\n inserting element in front");
+                Console.WriteLine("Insert Numeric Element");
+                var value = Convert.ToInt32(Console.ReadLine());
+
+                elementNode = new SimpleNode(value);
+                elementNode.Link = node;
+            }
+            else
+            {
+                Console.WriteLine("list empty");
+            }
+
+            DisplayElement(elementNode);
         }
 
         public static void DisplayElement(SimpleNode node)
